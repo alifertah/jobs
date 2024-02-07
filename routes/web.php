@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\NewsLetterController;
 use App\Http\Controllers\RegisterControl;
+use App\Http\Controllers\UserController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -23,5 +24,10 @@ Route::get('/register', function () {
     return view('register');
 });
 
+Route::get('/login', function () {
+    return view('login');
+});
+
 Route::post("/subscribe", [NewsLetterController::class, 'subscribe'])->name("subscribe");
 Route::post("/register", [RegisterControl::class, 'registerUser'])->name("register");
+Route::post("/login", [UserController::class, 'login'])->name("login");

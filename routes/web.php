@@ -1,5 +1,7 @@
 <?php
 
+use App\Http\Controllers\NewsLetterController;
+use App\Http\Controllers\RegisterControl;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -16,3 +18,10 @@ use Illuminate\Support\Facades\Route;
 Route::get('/', function () {
     return view('welcome');
 });
+
+Route::get('/register', function () {
+    return view('register');
+});
+
+Route::post("/subscribe", [NewsLetterController::class, 'subscribe'])->name("subscribe");
+Route::post("/register", [RegisterControl::class, 'registerUser'])->name("register");

@@ -1,4 +1,5 @@
 <?php
+use App\Http\Controllers\Auth\LogoutController;
 
 use App\Http\Controllers\NewsLetterController;
 use App\Http\Controllers\RegisterControl;
@@ -31,6 +32,8 @@ Route::get('/login', function () {
 Route::get('/dashboard', function () {
     return view('dashboard');
 });
+
+Route::post('/logout', [Logoutcontroller::class, 'destroy'])->name("logout");
 
 Route::post("/subscribe", [NewsLetterController::class, 'subscribe'])->name("subscribe");
 Route::post("/register", [RegisterControl::class, 'registerUser'])->name("register");

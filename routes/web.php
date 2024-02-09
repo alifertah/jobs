@@ -39,10 +39,13 @@ Route::get('/forgotPassword', function () {
     return view('forgotPassword');
 });
 
+
 Route::post('/logout', [Logoutcontroller::class, 'destroy'])->name("logout");
 
 Route::post("/subscribe", [NewsLetterController::class, 'subscribe'])->name("subscribe");
 Route::post("/register", [RegisterControl::class, 'registerUser'])->name("register");
 Route::post("/login", [UserController::class, 'login'])->name("login");
 Route::post("/forgotPassword", [ForgotPasswordController::class, 'store'])->name("forgotPassword");
-Route::get('passwordReset', 'App\Http\Controllers\Auth\ForgotPasswordController@create')->name('password.reset');
+
+Route::post('passwordReset/{token}', [ForgotPasswordController::class, 'reset'])->name('password.reset');
+Route::get('passwordReset/{token}', [ForgotPasswordController::class, 'init']);

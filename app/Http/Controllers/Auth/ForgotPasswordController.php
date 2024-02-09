@@ -8,16 +8,14 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Password;
 use Illuminate\View\View;
 
+use function Laravel\Prompts\error;
+
 class ForgotPasswordController extends Controller
 {
-    /**
-     * Display the password reset link request view.
-     */
-    public function create(): View
-    {
-        return view('auth.forgot-password');
-    }
 
+    public function init($token){
+        return view('resetPassword', ['token' => $token]);
+    }
     /**
      * Handle an incoming password reset link request.
      *
@@ -40,5 +38,26 @@ class ForgotPasswordController extends Controller
                     ? back()->with('status', __($status))
                     : back()->withInput($request->only('email'))
                             ->withErrors(['email' => __($status)]);
+    }
+
+
+    public function reset(Request $r){
+        $r->validate([
+            'email' => 'required|email',
+            'password' => 'required|min:8',
+        ]);
+        $status = Password::reset(
+            $r->only('email', 'password','token'),
+            function ($user, $password) {
+                $user->forceFill([
+                    'password' => bcrypt($password)
+                ])->save();
+            }
+        );
+        if ($status === Password::PASSWORD_RESET) {
+            return redirect()->route('login')->with('status', 'Password has been reset!');
+        } else {
+            return back()->withErrors(['email' => [__($status)]]);
+        }
     }
 }

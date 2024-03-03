@@ -4,6 +4,7 @@ use App\Http\Controllers\Auth\ForgotPasswordController;
 use App\Http\Controllers\Auth\LogoutController;
 
 use App\Http\Controllers\NewsLetterController;
+use App\Http\Controllers\OrganisatorController;
 use App\Http\Controllers\RegisterControl;
 use App\Http\Controllers\UserController;
 use Illuminate\Support\Facades\Route;
@@ -40,8 +41,9 @@ Route::get('/forgotPassword', function () {
 });
 
 
-Route::post('/logout', [Logoutcontroller::class, 'destroy'])->name("logout");
 
+
+Route::post('/logout', [Logoutcontroller::class, 'destroy'])->name("logout");
 Route::post("/subscribe", [NewsLetterController::class, 'subscribe'])->name("subscribe");
 Route::post("/register", [RegisterControl::class, 'registerUser'])->name("register");
 Route::post("/login", [UserController::class, 'login'])->name("login");
@@ -49,3 +51,7 @@ Route::post("/forgotPassword", [ForgotPasswordController::class, 'store'])->name
 
 Route::post('passwordReset/{token}', [ForgotPasswordController::class, 'reset'])->name('password.reset');
 Route::get('passwordReset/{token}', [ForgotPasswordController::class, 'init']);
+
+
+// THIS IS WHERE ALL EVENTS ACTIONS AND ROUTES GO
+Route::get('/organisator', [OrganisatorController::class, 'newEvent']);

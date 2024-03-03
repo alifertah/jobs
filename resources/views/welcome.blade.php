@@ -20,8 +20,7 @@
 <nav class="bg-white border-gray-200 dark:bg-gray-900">
   <div class="max-w-screen-xl flex flex-wrap items-center justify-between mx-auto p-4">
     <a href="https://flowbite.com/" class="flex items-center space-x-3 rtl:space-x-reverse">
-        <img src="https://flowbite.com/docs/images/logo.svg" class="h-8" alt="Flowbite Logo" />
-        <span class="self-center text-2xl font-semibold whitespace-nowrap dark:text-white">news letter</span>
+        <span class="self-center text-2xl font-semibold whitespace-nowrap dark:text-white">Eventos</span>
     </a>
     <button data-collapse-toggle="navbar-default" type="button" class="inline-flex items-center p-2 w-10 h-10 justify-center text-sm text-gray-500 rounded-lg md:hidden hover:bg-gray-100 focus:outline-none focus:ring-2 focus:ring-gray-200 dark:text-gray-400 dark:hover:bg-gray-700 dark:focus:ring-gray-600" aria-controls="navbar-default" aria-expanded="false">
         <span class="sr-only">Open main menu</span>
@@ -36,32 +35,20 @@
     </div>
   </div>
 </nav>
-
-    <section class="bg-white dark:bg-gray-900">
-  <div class="py-8 px-4 mx-auto max-w-screen-xl lg:py-16 lg:px-6">
-      <div class="mx-auto max-w-screen-md sm:text-center">
-          <h2 class="mb-4 text-3xl tracking-tight font-extrabold text-gray-900 sm:text-4xl dark:text-white">Sign up for our newsletter</h2>
-          <p class="mx-auto mb-8 max-w-2xl font-light text-gray-500 md:mb-12 sm:text-xl dark:text-gray-400">Stay up to date with the roadmap progress, announcements and exclusive discounts feel free to sign up with your email.</p>
-          <form action="{{ route('subscribe') }}" method="post">
-            @csrf
-              <div class="items-center mx-auto mb-3 space-y-4 max-w-screen-sm sm:flex sm:space-y-0">
-                  <div class="relative w-full">
-                      <label for="email" class="hidden mb-2 text-sm font-medium text-gray-900 dark:text-gray-300">Email address</label>
-                      <div class="flex absolute inset-y-0 left-0 items-center pl-3 pointer-events-none">
-                          <svg class="w-5 h-5 text-gray-500 dark:text-gray-400" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"><path d="M2.003 5.884L10 9.882l7.997-3.998A2 2 0 0016 4H4a2 2 0 00-1.997 1.884z"></path><path d="M18 8.118l-8 4-8-4V14a2 2 0 002 2h12a2 2 0 002-2V8.118z"></path></svg>
-                      </div>
-                      <input class="block p-3 pl-10 w-full text-sm text-gray-900 bg-gray-50 rounded-lg border border-gray-300 sm:rounded-none sm:rounded-l-lg focus:ring-primary-500 focus:border-primary-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-primary-500 dark:focus:border-primary-500" placeholder="Enter your email" name='email' type="email" id="email" required="">
-                  </div>
-                  <div>
-                      <button type="submit" class="py-3 px-5 w-full text-sm font-medium text-center text-white rounded-lg border cursor-pointer bg-primary-700 border-primary-600 sm:rounded-none sm:rounded-r-lg hover:bg-primary-800 focus:ring-4 focus:ring-primary-300 dark:bg-primary-600 dark:hover:bg-primary-700 dark:focus:ring-primary-800">Subscribe</button>
-                  </div>
-              </div>
-              <div class="mx-auto max-w-screen-sm text-sm text-left text-gray-500 newsletter-form-footer dark:text-gray-300">We care about the protection of your data. <a href="#" class="font-medium text-primary-600 dark:text-primary-500 hover:underline">Read our Privacy Policy</a>.</div>
-          </form>
-      </div>
-  </div>
-</section>
+<!-- Contenido de la Landing Page -->
+<div class="bg-white">
+    <div class="flex justify-between items-center py-28 px-5">
+        <div class="w-1/2">
+            <h2 class="text-5xl font-semibold text-gray-800">Welcome to eventos</h2>
+            <h3 class="text-xl font-semibold text-gray-600 mt-4">¡Únete a nuestro programa de lealtad y obtén increíbles recompensas!</h3>
+            <p class="text-gray-600 mt-4">Nuestro programa de fidelización está diseñado para recompensar a nuestros clientes más fieles. Obtén puntos con cada compra y canjéalos por descuentos exclusivos, regalos especiales y experiencias únicas.</p>
         </div>
+        <div class="w-1/2">
+            <img src="https://www.emprenderconactitud.com/img/fidelizamas.png" alt="Imagen relacionada con el programa de fidelización" class="w-full h-auto">
+        </div>
+    </div>
+</div>
+</div>
         
 
 <footer class="bg-white dark:bg-gray-900">
@@ -133,8 +120,8 @@
             </ul>
         </div>
     </div>
-    <div class="px-4 py-6 bg-gray-100 dark:bg-gray-700 md:flex md:items-center md:justify-between">
-        <span class="text-sm text-gray-500 dark:text-gray-300 sm:text-center">© 2023 <a href="https://flowbite.com/">Flowbite™</a>. All Rights Reserved.
+    <div class="px-4 py-6 bg-gray-100 dark:bg-gray-700 md:flex md:items-center md:justify-between ">
+        <span class="text-sm text-gray-500 dark:text-gray-300 sm:text-center">© 2023 <a href="https://flowbite.com/">Ali Fertah™</a>. All Rights Reserved.
         </span>
         <div class="flex mt-4 sm:justify-center md:mt-0 space-x-5 rtl:space-x-reverse">
             <a href="#" class="text-gray-400 hover:text-gray-900 dark:hover:text-white">

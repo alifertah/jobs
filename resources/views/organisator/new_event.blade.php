@@ -6,7 +6,7 @@
     <title>Document</title>
     <script src="https://cdn.tailwindcss.com"></script>
 </head>
-<body>
+<body class="flex justify-center">
     <!-- component -->
 <form class="w-full max-w-lg" method="post" action="{{ route('create_event') }}">
 @csrf  

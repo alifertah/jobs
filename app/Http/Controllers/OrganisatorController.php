@@ -14,6 +14,7 @@ class OrganisatorController extends Controller
     public function newEvent(){
         return (view("organisator.new_event"));
     }
+
     /**
      * this fucntion creates a new event
      */
@@ -27,4 +28,12 @@ class OrganisatorController extends Controller
         $newEvent->available_seats = $r->available_seats;
         $newEvent->save();
     }
+
+    /**
+     * 
+     */
+
+     public function ograniserStatistics(){
+        return (view("organisator.statistics"));
+     }
 }

@@ -56,3 +56,4 @@ Route::get('passwordReset/{token}', [ForgotPasswordController::class, 'init']);
 // THIS IS WHERE ALL EVENTS ACTIONS AND ROUTES GO
 Route::get('/organisator', [OrganisatorController::class, 'newEvent']);
 Route::post('/organisator', [OrganisatorController::class, 'createEvent'])->name("create_event");
+Route::get('/ograniserStatistics', [OrganisatorController::class, 'ograniserStatistics'])->name("ograniserStatistics");

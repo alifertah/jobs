@@ -8,6 +8,7 @@
 </head>
 <body>
     <!-- component -->
+    <h1 class="text-3xl font-bold text-center my-10">ALL EVENTS</h1>
     <section class="flex p-20">
         @foreach($allEvents as $event)
         <div class="relative mt-6 flex w-96 flex-col rounded-xl bg-white bg-clip-border text-gray-700 shadow-md transition-transform hover:scale-105">
@@ -23,7 +24,7 @@
                 {{ $event->title }}
             </h5>
             <p class="block font-sans text-base font-light leading-relaxed text-inherit antialiased">
-            {{ $event->description }}
+                {{ $event->description }}
             </p>
         </div>
         <div class="p-6 pt-0">
@@ -31,7 +32,8 @@
             class="!font-medium !text-blue-gray-900 !transition-colors hover:!text-pink-500"
             href="#"
             >
-      <button
+      <a
+      href="{{ url('/eventDetails/' . $event->id) }}"
       class="flex select-none items-center gap-2 rounded-lg py-2 px-4 text-center align-middle font-sans text-xs font-bold uppercase text-pink-500 transition-all hover:bg-pink-500/10 active:bg-pink-500/30 disabled:pointer-events-none disabled:opacity-50 disabled:shadow-none"
       type="button"
       data-ripple-dark="true"
@@ -52,7 +54,7 @@
       d="M17.25 8.25L21 12m0 0l-3.75 3.75M21 12H3"
       ></path>
     </svg>
-</button>
+</a>
 </a>
 </div>
 </div>

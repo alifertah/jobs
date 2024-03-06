@@ -2,7 +2,7 @@
 
 use App\Http\Controllers\Auth\ForgotPasswordController;
 use App\Http\Controllers\Auth\LogoutController;
-
+use App\Http\Controllers\EventsController;
 use App\Http\Controllers\NewsLetterController;
 use App\Http\Controllers\OrganisatorController;
 use App\Http\Controllers\RegisterControl;
@@ -56,7 +56,10 @@ Route::get('passwordReset/{token}', [ForgotPasswordController::class, 'init']);
 // THIS IS WHERE GET methods for organiser ACTIONS AND ROUTES GO
 Route::get('/organisator', [OrganisatorController::class, 'newEvent']);
 Route::get('/ograniserStatistics', [OrganisatorController::class, 'ograniserStatistics'])->name("ograniserStatistics");
-Route::get('/manageEvents', [OrganisatorController::class, 'manageEventsView'])->name("manageEventsView");
 
 // THIS IS WHERE POST methods for organiser ACTIONS AND ROUTES GO
 Route::post('/organisator', [OrganisatorController::class, 'createEvent'])->name("create_event");
+
+// events routes
+Route::get('/manageEvents', [OrganisatorController::class, 'manageEventsView'])->name("manageEventsView");
+Route::get('/eventDetails/{id}', [EventsController::class, 'eventDetails'])->name("eventDetails");

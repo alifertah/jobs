@@ -30,10 +30,20 @@ class OrganisatorController extends Controller
     }
 
     /**
-     * 
+     * statistics view
+     * @return: view to the statistics page
      */
-
      public function ograniserStatistics(){
         return (view("organisator.statistics"));
      }
+
+     /**
+      * manageEvents view
+      * @return: view to the manage events page
+      */
+    public function manageEventsView(){
+        $e = new Event();
+        $allEvents = $e->all();
+        return view("organisator.manage_events", compact("allEvents"));
+    }
 }

@@ -29,6 +29,7 @@ class AdminController extends Controller
             return redirect()->route("manageCategories")->with("error", "Category name can not be null!");
         }
     }
+    
     /**
      * this function deletes a category and returns to the manageCategories page
      *@return: returns to categories page
@@ -37,5 +38,16 @@ class AdminController extends Controller
         $category = Category::find($r->id);
         $category->delete();
         return redirect()->back()->with('success', 'Category deleted successfully.');   
+    }
+
+    /**
+     * this function edits a category name
+     */
+    public function editCategory(Request $r){
+        $category = Category::find($r->id);
+
+        $category->name = $r->title;
+        $category->save();
+        return redirect()->back()->with('success', 'Category updated successfully.');   
     }
 }

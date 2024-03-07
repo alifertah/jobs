@@ -71,3 +71,4 @@ Route::put('/eventDetails/{id}', [EventsController::class, 'editEvent'])->name("
 Route::get('/manageCategories', [AdminController::class, 'manageCategories'])->name("manageCategories");
 Route::post('/manageCategories', [AdminController::class, 'newCategory'])->name("newCategory");
 Route::delete('/manageCategories/{id}', [AdminController::class, 'deleteCategory'])->name("deleteCategory");
+Route::put('/manageCategories/{id}', [AdminController::class, 'editCategory'])->name("editCategory");

@@ -31,7 +31,7 @@ class EventsController extends Controller
     }
 
     /**
-     * 
+     * update event informations
      */
     public function editEvent(Request $r){
         $event = Event::find($r->id);

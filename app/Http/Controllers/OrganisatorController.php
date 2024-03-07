@@ -19,8 +19,10 @@ class OrganisatorController extends Controller
      * this fucntion creates a new event
      */
     public function createEvent(Request $r){
+        
         $newEvent = new Event();
         $newEvent->title = $r->title;
+        $newEvent->organiser = auth()->user()->email;
         $newEvent->description = $r->description;
         $newEvent->date = $r->date;
         $newEvent->category = $r->category;

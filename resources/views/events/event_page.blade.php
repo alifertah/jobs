@@ -8,6 +8,17 @@
 </head>
 <body>
 <!-- This is an example component -->
+@if(session('success'))
+    <div class="text-red-200 font-red-400">
+        {{ session('success') }}
+    </div>
+@endif
+
+@if(session('error'))
+    <div class="text-red-200 font-red-400">
+        {{ session('error') }}
+    </div>
+@endif
 <div class='flex items-center justify-center min-h-screen'>  <div class="rounded-xl border p-5 shadow-md w-9/12 bg-white">
     <div class="flex w-full items-center justify-between border-b pb-3">
       <div class="flex items-center space-x-3">
@@ -18,6 +29,14 @@
         <button class="rounded-2xl border bg-neutral-100 px-3 py-1 text-xs font-semibold">{{ $event->category }}</button>
         <div class="text-xs text-neutral-500">{{ $event->available_seats }} Seat</div>
         <button class="rounded-2xl border bg-green-400 px-4 py-2 hover:bg-green-600 duration-200 text-xs font-semibold">BOOK NOW!</button>
+        @if(auth()->user() && auth()->user()->email === $event->organiser)
+        <form action="{{ route('deleteEvent', $event->id) }}" method="post">
+          @csrf
+          @method('DELETE')
+          <button class="rounded-2xl border bg-red-600 px-3 text-white py-1 text-xs font-semibold">Delete</button>
+        </form>
+          <button class="rounded-2xl border bg-gray-600 px-3 text-white py-1 text-xs font-semibold">Edit</button>
+        @endif
       </div>
     </div>
 

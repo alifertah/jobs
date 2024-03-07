@@ -19,6 +19,7 @@ return new class extends Migration
             $table->string('location');
             $table->string('category');
             $table->integer('available_seats');
+            $table->string('organiser');
             $table->timestamps();
         });
     }

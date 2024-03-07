@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Category;
 use App\Models\Event;
 use Illuminate\Http\Request;
 
@@ -12,7 +13,8 @@ class OrganisatorController extends Controller
      * @return: returns the new event view
      */
     public function newEvent(){
-        return (view("organisator.new_event"));
+        $categories = Category::all();
+        return (view("organisator.new_event", compact("categories")));
     }
 
     /**

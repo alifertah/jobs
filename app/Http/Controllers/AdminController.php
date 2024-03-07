@@ -8,14 +8,16 @@ use Illuminate\Http\Request;
 class AdminController extends Controller
 {
     /**
-     * 
+     * @return:returns the view of manage categories with all categories
      */
     public function manageCategories(Request $r){
-        return(view("admin.categories"));
+        $c = Category::all();
+        return(view("admin.categories", compact("c")));
     }
 
     /**
-     * 
+     * this function creates a new category
+     * @return: returns a redirection to th manageCategories page with the status
      */
     public function newCategory(Request $r){
         $c = new Category();
@@ -26,5 +28,14 @@ class AdminController extends Controller
         } else{
             return redirect()->route("manageCategories")->with("error", "Category name can not be null!");
         }
+    }
+    /**
+     * this function deletes a category and returns to the manageCategories page
+     *@return: returns to categories page
+     */
+    public function deleteCategory(Request $r){
+        $category = Category::find($r->id);
+        $category->delete();
+        return redirect()->back()->with('success', 'Category deleted successfully.');   
     }
 }

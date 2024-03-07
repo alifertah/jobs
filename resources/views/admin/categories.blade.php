@@ -24,17 +24,26 @@
       <thead class="bg-gray-800 text-white">
         <tr>
           <th class="w-1/3 text-left py-3 px-4 uppercase font-semibold text-sm">Name</th>
-          <th class="w-1/3 text-left py-3 px-4 uppercase font-semibold text-sm">Last name</th>
           <th class="w-1/3 text-left py-3 px-4 uppercase font-semibold text-sm">Action</th>
         </tr>
       </thead>
     <tbody class="text-gray-700">
+        @foreach($c as $cat)
       <tr>
-        <td class="w-1/3 text-left py-3 px-4">Lian</td>
-        <td class="w-1/3 text-left py-3 px-4">Smith</td>
-        <td class="p-3 px-5 flex justify-end"><button type="button" class="mr-3 text-sm bg-blue-500 hover:bg-blue-700 text-white py-1 px-2 rounded focus:outline-none focus:shadow-outline">Save</button><button type="button" class="text-sm bg-red-500 hover:bg-red-700 text-white py-1 px-2 rounded focus:outline-none focus:shadow-outline">Delete</button></td>
+        <td class="w-1/3 text-left py-3 px-4">{{$cat->name}}</td>
+        <td class="p-3 px-5 flex justify-end">
+            <form action="">
+                <button type="submit" class="mr-3 text-sm bg-blue-500 hover:bg-blue-700 text-white py-1 px-2 rounded focus:outline-none focus:shadow-outline">Save</button>
+            </form>
+
+            <form method="post" action="{{ route('deleteCategory', $cat->id)}}">
+            @csrf
+            @method('DELETE')
+                <button type="submit" class="text-sm bg-red-500 hover:bg-red-700 text-white py-1 px-2 rounded focus:outline-none focus:shadow-outline">Delete</button></td>
+            </form>
         </td>
       </tr>
+      @endforeach
     </tbody>
     </table>
     </div>

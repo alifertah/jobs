@@ -8,8 +8,19 @@
 </head>
 <body>
     <!-- component -->
+    @if(session('success'))
+    <div class="text-red-200 font-red-400">
+        {{ session('success') }}
+    </div>
+    @endif
+
+@if(session('error'))
+    <div class="text-red-200 font-red-400">
+        {{ session('error') }}
+    </div>
+@endif  
     <h1 class="text-3xl font-bold text-center my-10">ALL EVENTS</h1>
-    <section class="flex p-20">
+    <section class="flex p-20 wrap">
         @foreach($allEvents as $event)
         <div class="relative mt-6 flex w-96 flex-col rounded-xl bg-white bg-clip-border text-gray-700 shadow-md transition-transform hover:scale-105">
             <div class="p-6">

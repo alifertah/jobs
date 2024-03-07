@@ -16,7 +16,8 @@ class EventsController extends Controller
     }
 
     /**
-     * 
+     * this deletes and item and redirect to all events page 
+     * @return:retuns to manage events page with success message 
      */
     public function deleteEvent(Request $r){
         $event = Event::find($r->id);
@@ -26,6 +27,24 @@ class EventsController extends Controller
             return redirect()->route("manageEventsView")->with("success", "item deleted successfully!");
         } else {
             return redirect()->route("manageEventsView")->with("Error", "Event not found");
+        }
+    }
+
+    /**
+     * 
+     */
+    public function editEvent(Request $r){
+        $event = Event::find($r->id);
+
+        if($event){
+            $event->title = $r->title;
+            $event->location = $r->location;
+            $event->description = $r->description;
+            $event->updated_at = now();
+            $event->save();
+            return redirect()->back()->with('success', 'Event updated successfully.');
+        } else {
+            return redirect()->back()->with('error', 'Event not found.');
         }
     }
 }

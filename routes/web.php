@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\AdminController;
 use App\Http\Controllers\Auth\ForgotPasswordController;
 use App\Http\Controllers\Auth\LogoutController;
 use App\Http\Controllers\EventsController;
@@ -67,4 +68,5 @@ Route::delete('/eventDetails/{id}', [EventsController::class, 'deleteEvent'])->n
 Route::put('/eventDetails/{id}', [EventsController::class, 'editEvent'])->name("editEvent");
 
 // admin
-Route::get('/manageCategories', [EventsController::class, 'editEvent'])->name("editEvent");
+Route::get('/manageCategories', [AdminController::class, 'manageCategories'])->name("manageCategories");
+Route::post('/manageCategories', [AdminController::class, 'newCategory'])->name("newCategory");

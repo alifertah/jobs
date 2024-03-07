@@ -20,7 +20,6 @@
       <div class="flex items-center space-x-8">
         <button class="rounded-2xl border bg-neutral-100 px-3 py-1 text-xs font-semibold">{{ $event->category }}</button>
         <div class="text-xs text-neutral-500">{{ $event->available_seats }} Seat</div>
-        <button class="rounded-2xl border bg-green-400 px-4 py-2 hover:bg-green-600 duration-200 text-xs font-semibold">BOOK NOW!</button>
         @if(auth()->user() && auth()->user()->email === $event->organiser)
         <form action="{{ route('deleteEvent', $event->id) }}" method="post">
           @csrf
@@ -28,7 +27,9 @@
           <button class="rounded-2xl border bg-red-600 px-3 text-white py-1 text-xs font-semibold">Delete</button>
         </form>
           <button data-modal-target="edit-modal" data-modal-toggle="edit-modal" class="rounded-2xl border bg-gray-600 px-3 text-white py-1 text-xs font-semibold">Edit</button>
-        @endif
+          @else
+            <button class="rounded-2xl border bg-green-400 px-4 py-2 hover:bg-green-600 duration-200 text-xs font-semibold">BOOK NOW!</button>
+          @endif
       </div>
     </div>
 

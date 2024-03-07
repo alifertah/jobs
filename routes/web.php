@@ -65,3 +65,6 @@ Route::get('/manageEvents', [OrganisatorController::class, 'manageEventsView'])-
 Route::get('/eventDetails/{id}', [EventsController::class, 'eventDetails'])->name("eventDetails");
 Route::delete('/eventDetails/{id}', [EventsController::class, 'deleteEvent'])->name("deleteEvent");
 Route::put('/eventDetails/{id}', [EventsController::class, 'editEvent'])->name("editEvent");
+
+// admin
+Route::get('/manageCategories', [EventsController::class, 'editEvent'])->name("editEvent");

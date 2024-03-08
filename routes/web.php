@@ -72,3 +72,4 @@ Route::get('/manageCategories', [AdminController::class, 'manageCategories'])->n
 Route::post('/manageCategories', [AdminController::class, 'newCategory'])->name("newCategory");
 Route::delete('/manageCategories/{id}', [AdminController::class, 'deleteCategory'])->name("deleteCategory");
 Route::put('/manageCategories/{id}', [AdminController::class, 'editCategory'])->name("editCategory");
+Route::get('/admin', [AdminController::class, 'adminDashboard'])->name("adminDashboard");

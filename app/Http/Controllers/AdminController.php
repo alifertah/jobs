@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Category;
+use App\Models\User;
 use Illuminate\Http\Request;
 
 class AdminController extends Controller
@@ -49,5 +50,14 @@ class AdminController extends Controller
         $category->name = $r->title;
         $category->save();
         return redirect()->back()->with('success', 'Category updated successfully.');   
+    }
+
+    /**
+     * 
+     */
+    public function adminDashboard(){
+        $users = User::all();
+
+        return view("admin.admin", compact("users"));
     }
 }

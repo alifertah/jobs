@@ -18,6 +18,7 @@ return new class extends Migration
             $table->dateTime('date');
             $table->string('location');
             $table->string('category');
+            $table->string('booking_type');
             $table->integer('available_seats');
             $table->string('status')->default("pending");
             $table->string('organiser');

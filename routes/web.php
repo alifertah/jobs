@@ -54,11 +54,12 @@ Route::post('passwordReset/{token}', [ForgotPasswordController::class, 'reset'])
 Route::get('passwordReset/{token}', [ForgotPasswordController::class, 'init']);
 
 
-// THIS IS WHERE GET methods for organiser ACTIONS AND ROUTES GO
-Route::get('/organisator', [OrganisatorController::class, 'newEvent']);
+// THIS IS WHERE GET methods for organiser ACTIONS AND ROUTES 
+Route::get('/newEvent', [OrganisatorController::class, 'newEvent']);
 Route::get('/ograniserStatistics', [OrganisatorController::class, 'ograniserStatistics'])->name("ograniserStatistics");
+Route::get('/organiser', [OrganisatorController::class, 'organiser'])->name("organiser");
 
-// THIS IS WHERE POST methods for organiser ACTIONS AND ROUTES GO
+// THIS IS WHERE POST methods for organiser ACTIONS AND ROUTES 
 Route::post('/organisator', [OrganisatorController::class, 'createEvent'])->name("create_event");
 
 // events routes

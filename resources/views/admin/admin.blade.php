@@ -80,36 +80,6 @@
                 </div>
                 <input class="w-full h-10 pl-10 pr-4 py-1 text-base placeholder-gray-500 border rounded-full focus:shadow-outline" type="search" placeholder="Buscar...">
             </div>
-
-                 <!-- Contenedor de Gráficas -->
-            <div class="mt-8 flex flex-wrap space-x-0 space-y-2 md:space-x-4 md:space-y-0">
-                <!-- Primer contenedor -->
-                <!-- Sección 1 - Gráfica de Usuarios -->
-                <div class="flex-1 bg-white p-4 shadow rounded-lg md:w-1/2">
-                    <h2 class="text-gray-500 text-lg font-semibold pb-1">Usuarios</h2>
-                    <div class="my-1"></div> <!-- Espacio de separación -->
-                    <div class="bg-gradient-to-r from-cyan-300 to-cyan-500 h-px mb-6"></div> <!-- Línea con gradiente -->
-                    <div class="chart-container" style="position: relative; height:150px; width:100%">
-                        <!-- El canvas para la gráfica -->
-                        <canvas id="usersChart"></canvas>
-                    </div>
-                </div>
-
-                <!-- Segundo contenedor -->
-                <!-- Sección 2 - Gráfica de Comercios -->
-                <div class="flex-1 bg-white p-4 shadow rounded-lg md:w-1/2">
-                    <h2 class="text-gray-500 text-lg font-semibold pb-1">Comercios</h2>
-                    <div class="my-1"></div> <!-- Espacio de separación -->
-                    <div class="bg-gradient-to-r from-cyan-300 to-cyan-500 h-px mb-6"></div> <!-- Línea con gradiente -->
-                    <div class="chart-container" style="position: relative; height:150px; width:100%">
-                        <!-- El canvas para la gráfica -->
-                        <canvas id="commercesChart"></canvas>
-                    </div>
-                </div>
-            </div>
-
-            <!-- Tercer contenedor debajo de los dos anteriores -->
-            <!-- Sección 3 - Tabla de Autorizaciones Pendientes -->
             <div class="mt-8 bg-white p-4 shadow rounded-lg">
                 <h2 class="text-gray-500 text-lg font-semibold pb-4">Autorizaciones Pendientes</h2>
                 <div class="my-1"></div> <!-- Espacio de separación -->
@@ -129,7 +99,7 @@
                                 <td class="py-2 px-4 border-b border-grey-light text-center">{{ $user->access }}</td>
                                 <td class="py-2 px-4 border-b border-grey-light text-center flex justify-center">
                                 <button type="submit" data-modal-target="edit-modal-{{ $user->id }}" data-modal-toggle="edit-modal-{{ $user->id }}" class="mr-3 text-sm bg-blue-500 hover:bg-blue-700 text-white py-1 px-2 rounded focus:outline-none focus:shadow-outline">Edit</button>
-                                    <form method="post"">
+                                    <form method="post" action="{{ route('deleteUser', $user->id) }}">
                                     @csrf
                                     @method('DELETE')
                                         <button type="submit" class="text-sm bg-red-500 hover:bg-red-700 text-white py-1 px-2 rounded focus:outline-none focus:shadow-outline">Delete</button></td>
@@ -154,13 +124,13 @@
             </div>
             <!-- Modal body -->
             <div class="p-4 md:p-5">
-                <form class="space-y-4" method="post">
+                <form class="space-y-4" method="post" action="{{ route('editUserPerssion', $user->id) }}">
                     @csrf
                     @method('PUT')
                     <input type="text" name="id" value="{{ $user->id }}" hidden>
                     <div>
                         <label for="title" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Title</label>
-                        <input type="text" name="title" value="{{ $user->access }}" id="name"  class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-green-500 focus:border-green-500 block w-full p-2.5 dark:bg-gray-600 dark:border-gray-500 dark:placeholder-gray-400 dark:text-white" placeholder="Title" required>
+                        <input type="text" name="access" value="{{ $user->access }}" id="name"  class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-green-500 focus:border-green-500 block w-full p-2.5 dark:bg-gray-600 dark:border-gray-500 dark:placeholder-gray-400 dark:text-white" placeholder="Title" required>
                     </div>
                     <button type="submit" class="w-full text-white bg-green-700 hover:bg-green-800 focus:ring-4 focus:outline-none focus:ring-green-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:bg-green-600 dark:hover:bg-green-700 dark:focus:ring-green-800">Create</button>
                 </form>

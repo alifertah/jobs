@@ -60,4 +60,23 @@ class AdminController extends Controller
 
         return view("admin.admin", compact("users"));
     }
+
+    /**
+     * deleteUser 
+     */
+    public function deleteUser(Request $r){
+        $user = User::find($r->id);
+        $user->delete();
+        return redirect()->back()->with('success', 'User deleted successfully.');
+    }
+
+    /**
+     * this function edit a user permissions
+     */
+    public function editUserPerssion(Request $r){
+        $user = User::find($r->id);
+        $user->access = $r->access;
+        $user->save();
+        return redirect()->back()->with('success', 'User deleted successfully.');
+    }
 }

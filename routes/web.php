@@ -68,8 +68,12 @@ Route::delete('/eventDetails/{id}', [EventsController::class, 'deleteEvent'])->n
 Route::put('/eventDetails/{id}', [EventsController::class, 'editEvent'])->name("editEvent");
 
 // admin
+Route::get('/admin', [AdminController::class, 'adminDashboard'])->name("adminDashboard");
+// admin to categories
 Route::get('/manageCategories', [AdminController::class, 'manageCategories'])->name("manageCategories");
 Route::post('/manageCategories', [AdminController::class, 'newCategory'])->name("newCategory");
 Route::delete('/manageCategories/{id}', [AdminController::class, 'deleteCategory'])->name("deleteCategory");
 Route::put('/manageCategories/{id}', [AdminController::class, 'editCategory'])->name("editCategory");
-Route::get('/admin', [AdminController::class, 'adminDashboard'])->name("adminDashboard");
+// admin to users 
+Route::delete('/deleteUser/{id}', [AdminController::class, 'deleteUser'])->name("deleteUser");
+Route::put('/editUser/{id}', [AdminController::class, 'editUserPerssion'])->name("editUserPerssion");

@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Category;
+use App\Models\Event;
 use App\Models\User;
 use Illuminate\Http\Request;
 
@@ -53,12 +54,14 @@ class AdminController extends Controller
     }
 
     /**
-     * 
+     * this function shows the view to the admin page
+     *
      */
     public function adminDashboard(){
+        $events = Event::all();
         $users = User::all();
-
-        return view("admin.admin", compact("users"));
+        $data = compact("events", "users");
+        return view("admin.admin", compact("data"));
     }
 
     /**
@@ -77,6 +80,16 @@ class AdminController extends Controller
         $user = User::find($r->id);
         $user->access = $r->access;
         $user->save();
-        return redirect()->back()->with('success', 'User deleted successfully.');
+        return redirect()->back()->with('success', 'User Permission edited.');
+    }
+    
+    /**
+     * this function acceptes an event
+     */
+    public function acceptEvent(Request $r){
+        $event = Event::find($r->id);
+        $event->status = "accepted";
+        $event->save();
+        return redirect()->back()->with('success', 'Event accepted');
     }
 }

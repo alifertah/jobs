@@ -93,7 +93,7 @@
                         </tr>
                     </thead>
                     <tbody>
-                        @foreach($users as $user)
+                        @foreach($data['users'] as $user)
                             <tr class="hover:bg-grey-lighter">
                                 <td class="py-2 px-4 border-b border-grey-light text-center">{{ $user->email }}</td>
                                 <td class="py-2 px-4 border-b border-grey-light text-center">{{ $user->access }}</td>
@@ -153,38 +153,40 @@
             <!-- Sección 4 - Tabla de Transacciones -->
             <div class="mt-8 bg-white p-4 shadow rounded-lg">
                 <div class="bg-white p-4 rounded-md mt-4">
-                    <h2 class="text-gray-500 text-lg font-semibold pb-4">Transacciones</h2>
+                    <h2 class="text-gray-500 text-lg font-semibold pb-4">Events</h2>
                     <div class="my-1"></div> <!-- Espacio de separación -->
                     <div class="bg-gradient-to-r from-cyan-300 to-cyan-500 h-px mb-6"></div> <!-- Línea con gradiente -->
                     <table class="w-full table-auto text-sm">
                         <thead>
                             <tr class="text-sm leading-normal">
-                                <th class="py-2 px-4 bg-grey-lightest font-bold uppercase text-sm text-grey-light border-b border-grey-light">Nombre</th>
-                                <th class="py-2 px-4 bg-grey-lightest font-bold uppercase text-sm text-grey-light border-b border-grey-light">Fecha</th>
-                                <th class="py-2 px-4 bg-grey-lightest font-bold uppercase text-sm text-grey-light border-b border-grey-light text-right">Monto</th>
+                                <th class="py-2 px-4 bg-grey-lightest font-bold uppercase text-sm text-grey-light border-b border-grey-light">Title</th>
+                                <th class="py-2 px-4 bg-grey-lightest font-bold uppercase text-sm text-grey-light border-b border-grey-light">Organiser</th>
+                                <th class="py-2 px-4 bg-grey-lightest font-bold uppercase text-center text-sm text-grey-light border-b border-grey-light">Action</th>
                             </tr>
                         </thead>
                         <tbody>
+                            @foreach($data['events'] as $event)
+                            @if($event->status === "pending")
                             <tr class="hover:bg-grey-lighter">
-                                <td class="py-2 px-4 border-b border-grey-light">Carlos Sánchez</td>
-                                <td class="py-2 px-4 border-b border-grey-light">27/07/2023</td>
-                                <td class="py-2 px-4 border-b border-grey-light text-right">$1500</td>
+                                <td class="py-2 px-4 text-center border-b border-grey-light">{{$event->title}}</td>
+                                <td class="py-2 px-4 text-center border-b border-grey-light">{{$event->organiser}}</td>
+                                <td class="py-2 px-4 text-center border-b border-grey-light flex justify-center">
+                                <form method="post" action="{{ route('acceptEvent', $event->id) }}">
+                                    @csrf
+                                    <button type="submit" class="mr-3 text-sm bg-green-500 hover:bg-green-700 text-white py-1 px-2 rounded focus:outline-none focus:shadow-outline">
+                                        Accept
+                                    </button>
+                                </form>
+                                    <form method="post" action="{{ route('acceptEvent', $event->id) }}">
+                                    @csrf
+                                    @method('DELETE')
+                                        <button type="submit" class="text-sm bg-red-500 hover:bg-red-700 text-white py-1 px-2 rounded focus:outline-none focus:shadow-outline">Reject</button></td>
+                                    </form>
+                                </td>
+                                </td>
                             </tr>
-                        <tr class="hover:bg-grey-lighter">
-                            <td class="py-2 px-4 border-b border-grey-light">Pedro Hernández</td>
-                            <td class="py-2 px-4 border-b border-grey-light">02/08/2023</td>
-                            <td class="py-2 px-4 border-b border-grey-light text-right">$1950</td>
-                        </tr>
-                        <tr class="hover:bg-grey-lighter">
-                            <td class="py-2 px-4 border-b border-grey-light">Sara Ramírez</td>
-                            <td class="py-2 px-4 border-b border-grey-light">03/08/2023</td>
-                            <td class="py-2 px-4 border-b border-grey-light text-right">$1850</td>
-                        </tr>
-                        <tr class="hover:bg-grey-lighter">
-                            <td class="py-2 px-4 border-b border-grey-light">Daniel Torres</td>
-                            <td class="py-2 px-4 border-b border-grey-light">04/08/2023</td>
-                            <td class="py-2 px-4 border-b border-grey-light text-right">$2300</td>
-                        </tr>
+                            @endif
+                            @endforeach
                         </tbody>
                     </table>
                     <!-- Botón "Ver más" para la tabla de Transacciones -->

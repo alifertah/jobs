@@ -177,7 +177,7 @@
                                         Accept
                                     </button>
                                 </form>
-                                    <form method="post" action="{{ route('acceptEvent', $event->id) }}">
+                                    <form method="post" action="{{ route('rejectEvent', $event->id) }}">
                                     @csrf
                                     @method('DELETE')
                                         <button type="submit" class="text-sm bg-red-500 hover:bg-red-700 text-white py-1 px-2 rounded focus:outline-none focus:shadow-outline">Reject</button></td>

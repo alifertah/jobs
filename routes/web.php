@@ -79,3 +79,4 @@ Route::delete('/deleteUser/{id}', [AdminController::class, 'deleteUser'])->name(
 Route::put('/editUser/{id}', [AdminController::class, 'editUserPerssion'])->name("editUserPerssion");
 // admin to events 
 Route::post('/acceptEvent/{id}', [AdminController::class, 'acceptEvent'])->name("acceptEvent");
+Route::delete('/rejectEvent/{id}', [AdminController::class, 'rejectEvent'])->name("rejectEvent");

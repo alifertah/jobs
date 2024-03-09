@@ -92,4 +92,14 @@ class AdminController extends Controller
         $event->save();
         return redirect()->back()->with('success', 'Event accepted');
     }
+
+    /**
+     * this function acceptes an event
+     */
+    public function rejectEvent(Request $r){
+        $event = Event::find($r->id);
+        $event->status = "rejected";
+        $event->save();
+        return redirect()->back()->with('success', 'Event Rejected');
+    }
 }

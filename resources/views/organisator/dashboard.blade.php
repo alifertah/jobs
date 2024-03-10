@@ -148,104 +148,60 @@
 </div>
 
 </div>
-            <!-- Campo de búsqueda -->
+
+
             <div class="mt-8 bg-white p-4 shadow rounded-lg">
-                <h2 class="text-gray-500 text-lg font-semibold pb-4">Users</h2>
-                <div class="my-1"></div> <!-- Espacio de separación -->
-                <div class="bg-gradient-to-r from-cyan-300 to-cyan-500 h-px mb-6"></div> <!-- Línea con gradiente -->
-                <table class="w-full table-auto text-sm">
-                    <thead>
-                        <tr class="text-sm leading-normal">
-                            <th class="py-2 px-4 bg-grey-lightest font-bold uppercase text-sm text-grey-light border-b border-grey-light">Email</th>
-                            <th class="py-2 px-4 bg-grey-lightest font-bold uppercase text-sm text-grey-light border-b border-grey-light">Acess</th>
-                            <th class="py-2 px-4 bg-grey-lightest font-bold uppercase text-sm text-grey-light border-b border-grey-light">Action</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        @foreach($data['users'] as $user)
+                <div class="bg-white p-4 rounded-md mt-4">
+                    <h2 class="text-gray-500 text-lg font-semibold pb-4">Booking requests</h2>
+                    <div class="my-1"></div> 
+                    <div class="bg-gradient-to-r from-cyan-300 to-cyan-500 h-px mb-6"></div> 
+                    <table class="w-full table-auto text-sm">
+                        <thead>
+                            <tr class="text-sm leading-normal">
+                                <th class="py-2 px-4 bg-grey-lightest font-bold uppercase text-sm text-grey-light border-b border-grey-light">User</th>
+                                <th class="py-2 px-4 bg-grey-lightest font-bold uppercase text-sm text-grey-light border-b border-grey-light">Event</th>
+                                <th class="py-2 px-4 bg-grey-lightest font-bold uppercase text-center text-sm text-grey-light border-b border-grey-light">Approuved</th>
+                                <th class="py-2 px-4 bg-grey-lightest font-bold uppercase text-center text-sm text-grey-light border-b border-grey-light">Action</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            @foreach ($data['booking'] as $booking)
+                            @if($booking->event->organiser === auth()->user()->email && !$booking->approved)
                             <tr class="hover:bg-grey-lighter">
-                                <td class="py-2 px-4 border-b border-grey-light text-center">{{ $user->email }}</td>
-                                <td class="py-2 px-4 border-b border-grey-light text-center">{{ $user->access }}</td>
-                                <td class="py-2 px-4 border-b border-grey-light text-center flex justify-center">
-                                <button type="submit" data-modal-target="edit-modal-{{ $user->id }}" data-modal-toggle="edit-modal-{{ $user->id }}" class="mr-3 text-sm bg-blue-500 hover:bg-blue-700 text-white py-1 px-2 rounded focus:outline-none focus:shadow-outline">Edit</button>
-                                    <form method="post" action="{{ route('deleteUser', $user->id) }}">
-                                    @csrf
-                                    @method('DELETE')
-                                        <button type="submit" class="text-sm bg-red-500 hover:bg-red-700 text-white py-1 px-2 rounded focus:outline-none focus:shadow-outline">Delete</button></td>
-                                    </form>
+                                <td class="py-2 px-4 text-center border-b border-grey-light">{{$booking->user->email}}</td>
+                                <td class="py-2 px-4 text-center border-b border-grey-light">{{$booking->event->title}}</td>
+                                <td class="py-2 px-4 text-center border-b border-grey-light">{{$booking->approved}}</td>
+                                <td class="py-2 px-4 text-center border-b border-grey-light flex justify-center">
+                                    <a href="{{route('accpetBooking', $booking->id)}}"  class="text-sm bg-gray-500 text-white py-1 px-2 rounded focus:outline-none focus:shadow-outline">Accept</a></td>
                                 </td>
                             </tr>
-                            <div id="edit-modal-{{ $user->id }}" tabindex="-1" aria-hidden="true" class="hidden overflow-y-auto overflow-x-hidden fixed top-0 right-0 left-0 z-50 justify-center items-center w-full md:inset-0 h-[calc(100%-1rem)] max-h-full">
-    <div class="relative p-4 w-full max-w-md max-h-full">
-        <!-- Modal content -->
-        <div class="relative bg-white rounded-lg shadow dark:bg-gray-700">
-            <!-- Modal header -->
-            <div class="flex items-center justify-between p-4 md:p-5 border-b rounded-t dark:border-gray-600">
-                <h3 class="text-xl font-semibold text-gray-900 dark:text-white">
-                    Edit Product
-                </h3>
-                <button type="button" class="end-2.5 text-gray-400 bg-transparent hover:bg-gray-200 hover:text-gray-900 rounded-lg text-sm w-8 h-8 ms-auto inline-flex justify-center items-center dark:hover:bg-gray-600 dark:hover:text-white" data-modal-hide="authentication-modal">
-                    <svg class="w-3 h-3" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 14 14">
-                        <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="m1 1 6 6m0 0 6 6M7 7l6-6M7 7l-6 6"/>
-                    </svg>
-                    <span class="sr-only">Close modal</span>
-                </button>
-            </div>
-            <!-- Modal body -->
-            <div class="p-4 md:p-5">
-                <form class="space-y-4" method="post" action="{{ route('editUserPerssion', $user->id) }}">
-                    @csrf
-                    @method('PUT')
-                    <input type="text" name="id" value="{{ $user->id }}" hidden>
-                    <div>
-                        <label for="title" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Title</label>
-                        <input type="text" name="access" value="{{ $user->access }}" id="name"  class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-green-500 focus:border-green-500 block w-full p-2.5 dark:bg-gray-600 dark:border-gray-500 dark:placeholder-gray-400 dark:text-white" placeholder="Title" required>
+                            @endif
+                            @endforeach
+                        </tbody>
+                    </table>
                     </div>
-                    <button type="submit" class="w-full text-white bg-green-700 hover:bg-green-800 focus:ring-4 focus:outline-none focus:ring-green-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:bg-green-600 dark:hover:bg-green-700 dark:focus:ring-green-800">Create</button>
-                </form>
-            </div>
-        </div>
-    </div>
-</div> 
-                        @endforeach
-                    </tbody>
-                </table>
-                <!-- Botón "Ver más" para la tabla de Autorizaciones Pendientes -->
-            </div>
-
-            <!-- Cuarto contenedor -->
-            <!-- Sección 4 - Tabla de Transacciones -->
+                </div>
             <div class="mt-8 bg-white p-4 shadow rounded-lg">
                 <div class="bg-white p-4 rounded-md mt-4">
                     <h2 class="text-gray-500 text-lg font-semibold pb-4">Events</h2>
-                    <div class="my-1"></div> <!-- Espacio de separación -->
-                    <div class="bg-gradient-to-r from-cyan-300 to-cyan-500 h-px mb-6"></div> <!-- Línea con gradiente -->
+                    <div class="my-1"></div> 
+                    <div class="bg-gradient-to-r from-cyan-300 to-cyan-500 h-px mb-6"></div> 
                     <table class="w-full table-auto text-sm">
                         <thead>
                             <tr class="text-sm leading-normal">
                                 <th class="py-2 px-4 bg-grey-lightest font-bold uppercase text-sm text-grey-light border-b border-grey-light">Title</th>
                                 <th class="py-2 px-4 bg-grey-lightest font-bold uppercase text-sm text-grey-light border-b border-grey-light">Organiser</th>
-                                <th class="py-2 px-4 bg-grey-lightest font-bold uppercase text-center text-sm text-grey-light border-b border-grey-light">Action</th>
+                                <th class="py-2 px-4 bg-grey-lightest font-bold uppercase text-center text-sm text-grey-light border-b border-grey-light">Status</th>
                             </tr>
                         </thead>
                         <tbody>
                             @foreach($data['events'] as $event)
-                            @if($event->status === "pending")
+                            @if($event->organiser == auth()->user()->email )
                             <tr class="hover:bg-grey-lighter">
                                 <td class="py-2 px-4 text-center border-b border-grey-light">{{$event->title}}</td>
                                 <td class="py-2 px-4 text-center border-b border-grey-light">{{$event->organiser}}</td>
                                 <td class="py-2 px-4 text-center border-b border-grey-light flex justify-center">
-                                <form method="post" action="{{ route('acceptEvent', $event->id) }}">
-                                    @csrf
-                                    <button type="submit" class="mr-3 text-sm bg-green-500 hover:bg-green-700 text-white py-1 px-2 rounded focus:outline-none focus:shadow-outline">
-                                        Accept
-                                    </button>
-                                </form>
-                                    <form method="post" action="{{ route('rejectEvent', $event->id) }}">
-                                    @csrf
-                                    @method('DELETE')
-                                        <button type="submit" class="text-sm bg-red-500 hover:bg-red-700 text-white py-1 px-2 rounded focus:outline-none focus:shadow-outline">Reject</button></td>
-                                    </form>
+                                    <button type="submit" class="text-sm bg-gray-500 text-white py-1 px-2 rounded focus:outline-none focus:shadow-outline">{{$event->status}}</button></td>
                                 </td>
                                 </td>
                             </tr>

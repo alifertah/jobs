@@ -4,6 +4,8 @@ namespace App\Http\Controllers;
 
 use App\Models\Category;
 use App\Models\Event;
+use App\Models\event_user;
+use App\Models\EventUser;
 use App\Models\User;
 use Illuminate\Http\Request;
 
@@ -57,10 +59,10 @@ class OrganisatorController extends Controller
      * this function returns the organiser dashboard view
      */
     public function organiser(){
+        $booking = event_user::all();
         $events = Event::all();
-        $users = User::all();
 
-        $data = compact("events", "users");
+        $data = compact("booking", "events");
         return (view("organisator.dashboard", compact("data")));
     }
 }

@@ -207,7 +207,7 @@
         </div>
     </div>
 </div> 
-                        @endforeach
+            @endforeach
                     </tbody>
                 </table>
                 <!-- Botón "Ver más" para la tabla de Autorizaciones Pendientes -->

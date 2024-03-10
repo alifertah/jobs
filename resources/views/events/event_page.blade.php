@@ -28,7 +28,11 @@
         </form>
           <button data-modal-target="edit-modal" data-modal-toggle="edit-modal" class="rounded-2xl border bg-gray-600 px-3 text-white py-1 text-xs font-semibold">Edit</button>
           @else
-            <button class="rounded-2xl border bg-green-400 px-4 py-2 hover:bg-green-600 duration-200 text-xs font-semibold">BOOK NOW!</button>
+            @if($event->booking_type === "auto")
+              <a href="/booking/{{$event->id}}" class="rounded-2xl border bg-green-400 px-4 py-2 hover:bg-green-600 duration-200 text-xs font-semibold">BOOK NOW!</a>
+              @else
+                <a href="/bookNow/{{$event->id}}" class="rounded-2xl border bg-green-400 px-4 py-2 hover:bg-green-600 duration-200 text-xs font-semibold">BOOK NOW!</a>
+            @endif
           @endif
       </div>
     </div>

@@ -8,6 +8,9 @@ use App\Http\Controllers\NewsLetterController;
 use App\Http\Controllers\OrganisatorController;
 use App\Http\Controllers\RegisterControl;
 use App\Http\Controllers\UserController;
+use App\Models\Event;
+use App\Models\User;
+use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -44,8 +47,9 @@ Route::get('/forgotPassword', function () {
 
 
 
+
 Route::post('/logout', [Logoutcontroller::class, 'destroy'])->name("logout");
-Route::post("/subscribe", [NewsLetterController::class, 'subscribe'])->name("subscribe");
+// Route::post("/subscribe", [NewsLetterController::class, 'subscribe'])->name("subscribe");
 Route::post("/register", [RegisterControl::class, 'registerUser'])->name("register");
 Route::post("/login", [UserController::class, 'login'])->name("login");
 Route::post("/forgotPassword", [ForgotPasswordController::class, 'store'])->name("forgotPassword");
@@ -54,13 +58,12 @@ Route::post('passwordReset/{token}', [ForgotPasswordController::class, 'reset'])
 Route::get('passwordReset/{token}', [ForgotPasswordController::class, 'init']);
 
 
-// THIS IS WHERE GET methods for organiser ACTIONS AND ROUTES 
+// organiser actions
 Route::get('/newEvent', [OrganisatorController::class, 'newEvent']);
 Route::get('/ograniserStatistics', [OrganisatorController::class, 'ograniserStatistics'])->name("ograniserStatistics");
 Route::get('/organiser', [OrganisatorController::class, 'organiser'])->name("organiser");
-
-// THIS IS WHERE POST methods for organiser ACTIONS AND ROUTES 
 Route::post('/organisator', [OrganisatorController::class, 'createEvent'])->name("create_event");
+Route::get('/acceptBooking/{id}', [EventsController::class, 'booking'])->name("booking");
 
 // events routes
 Route::get('/manageEvents', [OrganisatorController::class, 'manageEventsView'])->name("manageEventsView");
@@ -81,3 +84,8 @@ Route::put('/editUser/{id}', [AdminController::class, 'editUserPerssion'])->name
 // admin to events 
 Route::post('/acceptEvent/{id}', [AdminController::class, 'acceptEvent'])->name("acceptEvent");
 Route::delete('/rejectEvent/{id}', [AdminController::class, 'rejectEvent'])->name("rejectEvent");
+
+// USER book
+Route::get('/booking/{id}', [EventsController::class, 'autoBooking'])->name("booking");
+Route::get('/bookNow/{id}', [EventsController::class, 'bookNow'])->name("bookNow");
+Route::get('/accpetBooking/{id}', [EventsController::class, 'accpetBooking'])->name("accpetBooking");

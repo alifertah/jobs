@@ -6,7 +6,7 @@ use Closure;
 use Illuminate\Http\Request;
 use Symfony\Component\HttpFoundation\Response;
 
-class AdminRedirectMiddleware
+class OrganiserRedirectMiddleware
 {
     /**
      * Handle an incoming request.
@@ -15,7 +15,7 @@ class AdminRedirectMiddleware
      */
     public function handle(Request $request, Closure $next): Response
     {
-        if ($request->user() && $request->user()->access != 'RWX') {
+        if($request->user() && $request->user()->access != "RW"){
             return redirect("/manageEvents");
         }
         return $next($request);

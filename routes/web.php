@@ -59,11 +59,13 @@ Route::get('passwordReset/{token}', [ForgotPasswordController::class, 'init']);
 
 
 // organiser actions
-Route::get('/newEvent', [OrganisatorController::class, 'newEvent']);
-Route::get('/ograniserStatistics', [OrganisatorController::class, 'ograniserStatistics'])->name("ograniserStatistics");
-Route::get('/organiser', [OrganisatorController::class, 'organiser'])->name("organiser");
-Route::post('/organisator', [OrganisatorController::class, 'createEvent'])->name("create_event");
-Route::get('/acceptBooking/{id}', [EventsController::class, 'booking'])->name("booking");
+Route::middleware('organiser')->group(function () {
+    Route::get('/newEvent', [OrganisatorController::class, 'newEvent']);
+    Route::get('/ograniserStatistics', [OrganisatorController::class, 'ograniserStatistics'])->name("ograniserStatistics");
+    Route::get('/organiser', [OrganisatorController::class, 'organiser'])->name("organiser");
+    Route::post('/organisator', [OrganisatorController::class, 'createEvent'])->name("create_event");
+    Route::get('/acceptBooking/{id}', [EventsController::class, 'booking'])->name("booking");
+});
 
 // events routes
 Route::get('/manageEvents', [OrganisatorController::class, 'manageEventsView'])->name("manageEventsView");
@@ -72,6 +74,7 @@ Route::delete('/eventDetails/{id}', [EventsController::class, 'deleteEvent'])->n
 Route::put('/eventDetails/{id}', [EventsController::class, 'editEvent'])->name("editEvent");
 
 // ADMIN ACTIONS
+
 Route::middleware('admin')->group(function () {
     Route::get('/admin', [AdminController::class, 'adminDashboard'])->name("adminDashboard");
     Route::get('/manageCategories', [AdminController::class, 'manageCategories'])->name("manageCategories");

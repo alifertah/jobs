@@ -72,18 +72,20 @@ Route::delete('/eventDetails/{id}', [EventsController::class, 'deleteEvent'])->n
 Route::put('/eventDetails/{id}', [EventsController::class, 'editEvent'])->name("editEvent");
 
 // ADMIN ACTIONS
-Route::get('/admin', [AdminController::class, 'adminDashboard'])->name("adminDashboard");
+Route::middleware('admin')->group(function () {
+    Route::get('/admin', [AdminController::class, 'adminDashboard'])->name("adminDashboard");
+    Route::get('/manageCategories', [AdminController::class, 'manageCategories'])->name("manageCategories");
+    Route::post('/manageCategories', [AdminController::class, 'newCategory'])->name("newCategory");
+    Route::delete('/manageCategories/{id}', [AdminController::class, 'deleteCategory'])->name("deleteCategory");
+    Route::put('/manageCategories/{id}', [AdminController::class, 'editCategory'])->name("editCategory");
+    // admin to users 
+    Route::delete('/deleteUser/{id}', [AdminController::class, 'deleteUser'])->name("deleteUser");
+    Route::put('/editUser/{id}', [AdminController::class, 'editUserPerssion'])->name("editUserPerssion");
+    // admin to events 
+    Route::post('/acceptEvent/{id}', [AdminController::class, 'acceptEvent'])->name("acceptEvent");
+    Route::delete('/rejectEvent/{id}', [AdminController::class, 'rejectEvent'])->name("rejectEvent");
+});
 // admin to categories
-Route::get('/manageCategories', [AdminController::class, 'manageCategories'])->name("manageCategories");
-Route::post('/manageCategories', [AdminController::class, 'newCategory'])->name("newCategory");
-Route::delete('/manageCategories/{id}', [AdminController::class, 'deleteCategory'])->name("deleteCategory");
-Route::put('/manageCategories/{id}', [AdminController::class, 'editCategory'])->name("editCategory");
-// admin to users 
-Route::delete('/deleteUser/{id}', [AdminController::class, 'deleteUser'])->name("deleteUser");
-Route::put('/editUser/{id}', [AdminController::class, 'editUserPerssion'])->name("editUserPerssion");
-// admin to events 
-Route::post('/acceptEvent/{id}', [AdminController::class, 'acceptEvent'])->name("acceptEvent");
-Route::delete('/rejectEvent/{id}', [AdminController::class, 'rejectEvent'])->name("rejectEvent");
 
 // USER book
 Route::get('/booking/{id}', [EventsController::class, 'autoBooking'])->name("booking");

@@ -78,7 +78,7 @@ class EventsController extends Controller
     }
 
     /**
-     * this function executes bothe of em because its auto 
+     * this function executes bothe of em because its auto
      */
     public function autoBooking(Request $r){
         $this->bookNow($r);

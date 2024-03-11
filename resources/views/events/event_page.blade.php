@@ -12,6 +12,64 @@
 <!-- This is an example component -->
 
 <div class='flex items-center justify-center min-h-screen'>  <div class="rounded-xl border p-5 shadow-md w-9/12 bg-white">
+  <!-- component -->
+  @if(session()->has('error'))
+    <div
+      class="font-regular relative block w-full rounded-lg bg-red-500 p-4 text-base leading-5 text-white opacity-100 my-4"
+      data-dismissible="alert"
+    >
+      <div class="mr-12">{{session()->get('error')}}</div>
+      <div
+        class="absolute top-2.5 right-3 w-max rounded-lg transition-all hover:bg-white hover:bg-opacity-20"
+        data-dismissible-target="alert"
+      >
+          <svg
+            xmlns="http://www.w3.org/2000/svg"
+            class="h-6 w-6"
+            fill="none"
+            viewBox="0 0 24 24"
+            stroke="currentColor"
+            stroke-width="2"
+          >
+            <path
+              stroke-linecap="round"
+              stroke-linejoin="round"
+              d="M6 18L18 6M6 6l12 12"
+            ></path>
+          </svg>
+        </button>
+      </div>
+    </div>
+@endif
+  @if(session()->has('success'))
+    <div
+      class="font-regular relative block w-full rounded-lg bg-green-500 p-4 text-base leading-5 text-white opacity-100 my-4"
+      data-dismissible="alert"
+    >
+      <div class="mr-12">{{session()->get('success')}}</div>
+      <div
+        class="absolute top-2.5 right-3 w-max rounded-lg transition-all hover:bg-white hover:bg-opacity-20"
+        data-dismissible-target="alert"
+      >
+          <svg
+            xmlns="http://www.w3.org/2000/svg"
+            class="h-6 w-6"
+            fill="none"
+            viewBox="0 0 24 24"
+            stroke="currentColor"
+            stroke-width="2"
+          >
+            <path
+              stroke-linecap="round"
+              stroke-linejoin="round"
+              d="M6 18L18 6M6 6l12 12"
+            ></path>
+          </svg>
+        </button>
+      </div>
+    </div>
+@endif
+
     <div class="flex w-full items-center justify-between border-b pb-3">
       <div class="flex items-center space-x-3">
         <div class="h-8 w-8 rounded-full bg-slate-400 bg-[url('https://i.pravatar.cc/32')]"></div>
@@ -62,6 +120,7 @@
     </div>
   </div>
 </div>
+
 <!-- Event edit modal -->
 <div id="edit-modal" tabindex="-1" aria-hidden="true" class="hidden overflow-y-auto overflow-x-hidden fixed top-0 right-0 left-0 z-50 justify-center items-center w-full md:inset-0 h-[calc(100%-1rem)] max-h-full">
     <div class="relative p-4 w-full max-w-md max-h-full">

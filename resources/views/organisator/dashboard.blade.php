@@ -142,8 +142,8 @@
                 </svg>
             </div>
             <div class="flex flex-col justify-center">
-                <div class="text-lg">$948'560</div>
-                <div class="text-sm text-gray-400">Revenue</div>
+                <div class="text-lg">{{$data['events']->where('status', "pending")->count()}}</div>
+                <div class="text-sm text-gray-400">Pending events</div>
             </div>
         </div>
     </div>

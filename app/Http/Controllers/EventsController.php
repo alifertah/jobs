@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\Event;
 use App\Models\event_user;
 use App\Models\User;
+use Illuminate\Database\QueryException;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 
@@ -62,7 +63,7 @@ class EventsController extends Controller
         $user->events()->updateExistingPivot($event->id, ['approved' => true]); 
         $event->available_seats--;
         $event->save();
-        return redirect()->back()->with('success', 'Event booked successfully.');
+        return redirect()->back();
     }
     
     /**
@@ -70,11 +71,20 @@ class EventsController extends Controller
      *  approuved to false and we wait the organiser to approuve
      */
     public function bookNow(Request $r){
-        $u = $user = Auth::user();
-        $user = User::find($u->id);
-        $event = Event::find($r->id);
-        $user->events()->attach($event->id, ['approved' => false]);
-        return redirect()->back()->with('success', 'We will notify the organiser.');
+        try {
+            $u = $user = Auth::user();
+            $user = User::find($u->id);
+            $event = Event::find($r->id);
+            $user->events()->attach($event->id, ['approved' => false]);
+            return redirect()->back()->with('success', 'We will notify the organiser.');
+
+        } catch(QueryException $error) {
+            if ($error->errorInfo[1] == 1062) { 
+                return redirect()->back()->with('error', 'You have already booked this event.');
+            } else {
+                return redirect()->back()->with('error', 'An error occurred while booking the event.');
+            }
+        }
     }
 
     /**
@@ -83,7 +93,7 @@ class EventsController extends Controller
     public function autoBooking(Request $r){
         $this->bookNow($r);
         $this->booking($r);
-        return redirect()->back()->with('success', 'Event booked successfully.');
+        return redirect()->back();
     }
     
     /**

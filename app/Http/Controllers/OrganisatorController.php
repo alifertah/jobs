@@ -8,6 +8,7 @@ use App\Models\event_user;
 use App\Models\EventUser;
 use App\Models\User;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Cache;
 
 class OrganisatorController extends Controller
 {
@@ -53,6 +54,13 @@ class OrganisatorController extends Controller
         $e = new Event();
         $allEvents = $e->all();
         return view("organisator.manage_events", compact("allEvents"));
+
+        // $allEvents = Cache::remember('all_events', 1440, function () {
+        //     $e = new Event();
+        //     return $e->all();
+        // });
+    
+        // return view("organisator.manage_events", compact("allEvents"));
     }
 
     /**

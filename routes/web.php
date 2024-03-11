@@ -49,6 +49,7 @@ Route::get('/forgotPassword', function () {
 
 
 Route::post('/logout', [Logoutcontroller::class, 'destroy'])->name("logout");
+Route::get('/logout', [Logoutcontroller::class, 'destroy'])->name("logout");
 // Route::post("/subscribe", [NewsLetterController::class, 'subscribe'])->name("subscribe");
 Route::post("/register", [RegisterControl::class, 'registerUser'])->name("register");
 Route::post("/login", [UserController::class, 'login'])->name("login");
@@ -60,18 +61,18 @@ Route::get('passwordReset/{token}', [ForgotPasswordController::class, 'init']);
 
 // organiser actions
 Route::middleware('organiser')->group(function () {
-    Route::get('/newEvent', [OrganisatorController::class, 'newEvent']);
     Route::get('/ograniserStatistics', [OrganisatorController::class, 'ograniserStatistics'])->name("ograniserStatistics");
     Route::get('/organiser', [OrganisatorController::class, 'organiser'])->name("organiser");
     Route::post('/organisator', [OrganisatorController::class, 'createEvent'])->name("create_event");
     Route::get('/acceptBooking/{id}', [EventsController::class, 'booking'])->name("booking");
+    Route::get('/newEvent', [OrganisatorController::class, 'newEvent']);
 });
-
-// events routes
 Route::get('/manageEvents', [OrganisatorController::class, 'manageEventsView'])->name("manageEventsView");
 Route::get('/eventDetails/{id}', [EventsController::class, 'eventDetails'])->name("eventDetails");
 Route::delete('/eventDetails/{id}', [EventsController::class, 'deleteEvent'])->name("deleteEvent");
 Route::put('/eventDetails/{id}', [EventsController::class, 'editEvent'])->name("editEvent");
+
+// events routes
 
 // ADMIN ACTIONS
 

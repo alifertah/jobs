@@ -15,9 +15,9 @@ class OrganiserRedirectMiddleware
      */
     public function handle(Request $request, Closure $next): Response
     {
-        if($request->user() && $request->user()->access != "RW"){
-            return redirect("/manageEvents");
+        if($request->user() && ($request->user()->access === "RW" || $request->user()->access === "RWX")){
+            return $next($request);
         }
-        return $next($request);
+        return redirect("/manageEvents");
     }
 }

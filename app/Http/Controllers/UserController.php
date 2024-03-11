@@ -15,7 +15,7 @@ class UserController extends Controller
         $remember = $r->filled("remember");
 
         if(Auth::attempt($credentials, $remember)){
-            return redirect("/dashboard");
+            return redirect("/manageEvents");
         }
         return redirect()->back()->withErrors([
             'login' => 'These credentials do not match our records.',

@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Category;
 use App\Models\Event;
+use App\Models\event_user;
 use App\Models\User;
 use Illuminate\Http\Request;
 
@@ -60,7 +61,8 @@ class AdminController extends Controller
     public function adminDashboard(){
         $events = Event::all();
         $users = User::all();
-        $data = compact("events", "users");
+        $booking = event_user::all();
+        $data = compact("events", "users", "booking");
         return view("admin.admin", compact("data"));
     }
 

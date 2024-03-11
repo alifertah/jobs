@@ -7,8 +7,25 @@
     <title>Document</title>
 </head>
 <body>
-    <!-- component -->
-    @if(session('success'))
+    <nav class="flex py-4 px-8 justify-between">
+        <div class="" id="navbar-default">
+          <ul class="flex">
+            <li>
+              <a href="/manageEvents" class="block py-2 px-3 hover:text-pink-500 duration-500" aria-current="page">Events</a>
+            </li>
+            <li>
+              <a href="/newEvent" class="block py-2 px-3 hover:text-pink-500 duration-500" aria-current="page">New event</a>
+            </li>
+            <li>
+              <a href="/organiser" class="block py-2 px-3 hover:text-pink-500 duration-500" aria-current="page">Dashboard</a>
+            </li>
+        </ul>
+    </div>
+    <a href="/logout" class="block py-2 px-3 hover:text-pink-500 duration-500" aria-current="page">Logout</a>
+
+    </nav>
+    
+    <!-- @if(session('success'))
     <div class="text-red-200 font-red-400">
         {{ session('success') }}
     </div>
@@ -18,8 +35,11 @@
     <div class="text-red-200 font-red-400">
         {{ session('error') }}
     </div>
-@endif  
-    <h1 class="text-3xl font-bold text-center my-10">ALL EVENTS</h1>
+@endif   -->
+
+
+    
+<h1 class="text-3xl font-bold text-center my-10">ALL EVENTS</h1>
     <section class="flex p-20 flex-wrap justify-center">
         @foreach($allEvents as $event)
         @if($event->status == "accepted")

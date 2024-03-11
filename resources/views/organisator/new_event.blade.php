@@ -6,16 +6,36 @@
     <title>Document</title>
     <script src="https://cdn.tailwindcss.com"></script>
 </head>
-<body class="flex justify-center">
+<body class="">
+<nav class="flex py-4 px-8 justify-between">
+
+<div class="" id="navbar-default">
+  <ul class="flex">
+    <li>
+      <a href="/manageEvents" class="block py-2 px-3 hover:text-pink-500 duration-500" aria-current="page">Events</a>
+    </li>
+    <li>
+      <a href="#" class="block py-2 px-3 hover:text-pink-500 duration-500" aria-current="page">Home</a>
+    </li>
+    <li>
+      <a href="#" class="block py-2 px-3 hover:text-pink-500 duration-500" aria-current="page">Home</a>
+    </li>
+</ul>
+</div>
+<a href="/logout" class="block py-2 px-3 hover:text-pink-500 duration-500" aria-current="page">Logout</a>
+
+</nav>
     <!-- component -->
-<form class="w-full max-w-lg" method="post" action="{{ route('create_event') }}">
-@csrf  
-<div class="flex flex-wrap -mx-3 mb-6">
-  <div class="w-full px-3">
-      <label class="block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2" for="title">
-        Title
-      </label>
-      <input class="appearance-none block w-full bg-gray-200 text-gray-700 border border-gray-200 rounded py-3 px-4 mb-3 leading-tight focus:outline-none focus:bg-white focus:border-gray-500" id="tile" name="title" type="text" placeholder="Title">
+    <div class="flex justify-center">
+
+      <form class="w-full max-w-lg" method="post" action="{{ route('create_event') }}">
+        @csrf  
+        <div class="flex flex-wrap -mx-3 mb-6">
+          <div class="w-full px-3">
+            <label class="block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2" for="title">
+              Title
+            </label>
+            <input class="appearance-none block w-full bg-gray-200 text-gray-700 border border-gray-200 rounded py-3 px-4 mb-3 leading-tight focus:outline-none focus:bg-white focus:border-gray-500" id="tile" name="title" type="text" placeholder="Title">
     </div>
     <div class="w-full px-3">
       <label class="block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2" for="category">
@@ -23,7 +43,7 @@
       </label>
       <select class="appearance-none block w-full bg-gray-200 text-gray-700 border border-gray-200 rounded py-3 px-4 mb-3 leading-tight focus:outline-none focus:bg-white focus:border-gray-500" id="category" name="booking" type="select" placeholder="Category">    
         <option selected disabled>---select---</option>
-          <option value="auto">auto</option>
+        <option value="auto">auto</option>
           <option value="manuel">manuel</option>
       </div>
     <div class="w-full px-3">
@@ -48,10 +68,10 @@
           <option value="{{$cat->name}}">{{$cat->name}}</option>
         @endforeach
       </div>
-    <div class="w-full px-3">
-      <label class="block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2" for="available_seats">
+      <div class="w-full px-3">
+        <label class="block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2" for="available_seats">
       Available seats
-      </label>
+    </label>
       <input class="appearance-none block w-full bg-gray-200 text-gray-700 border border-gray-200 rounded py-3 px-4 mb-3 leading-tight focus:outline-none focus:bg-white focus:border-gray-500" id="category" name="available_seats" type="text" placeholder="2">    
     </div>
   </div>
@@ -72,5 +92,6 @@
     <div class="md:w-2/3"></div>
   </div>
 </form>
+</div>
 </body>
 </html>

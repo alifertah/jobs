@@ -15,7 +15,7 @@
     <div class="flex w-full items-center justify-between border-b pb-3">
       <div class="flex items-center space-x-3">
         <div class="h-8 w-8 rounded-full bg-slate-400 bg-[url('https://i.pravatar.cc/32')]"></div>
-        <div class="text-lg font-bold text-slate-700">Joe Smith</div>
+        <div class="text-lg font-bold text-slate-700">{{$event->organiser}}</div>
       </div>
       <div class="flex items-center space-x-8">
         <button class="rounded-2xl border bg-neutral-100 px-3 py-1 text-xs font-semibold">{{ $event->category }}</button>

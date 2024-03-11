@@ -49,7 +49,14 @@
                 </a>
 
             <!-- Ítem de Cerrar Sesión -->
-            <a class="block text-gray-500 py-2.5 px-4 my-2 rounded transition duration-200 hover:bg-gradient-to-r hover:from-cyan-500 hover:to-cyan-500 hover:text-white mt-auto" href="#">
+            <a class="block text-gray-500 py-2.5 px-4 my-2 rounded transition duration-200 hover:bg-gradient-to-r hover:from-cyan-500 hover:to-cyan-500 hover:text-white mt-auto" href="/newEvent">
+                <i class="fas -alt mr-2">+</i>New event
+            </a>
+            <!-- Ítem de Cerrar Sesión -->
+            <a class="block text-gray-500 py-2.5 px-4 my-2 rounded transition duration-200 hover:bg-gradient-to-r hover:from-cyan-500 hover:to-cyan-500 hover:text-white mt-auto" href="/manageEvents">
+            <i class="fas fa-file-alt mr-2"></i>Events
+            </a>
+            <a class="block text-gray-500 py-2.5 px-4 my-2 rounded transition duration-200 hover:bg-gradient-to-r hover:from-cyan-500 hover:to-cyan-500 hover:text-white mt-auto" href="/logout">
                 <i class="fas fa-sign-out-alt mr-2"></i>Logout
             </a>
 
@@ -92,8 +99,8 @@
                 </svg>
             </div>
             <div class="flex flex-col justify-center">
-                <div class="text-lg">3456</div>
-                <div class="text-sm text-gray-400">Customers</div>
+                <div class="text-lg">{{$data['users']->count()}}</div>
+                <div class="text-sm text-gray-400">USERS</div>
             </div>
         </div>
     </div>
@@ -108,8 +115,8 @@
                 </svg>
             </div>
             <div class="flex flex-col justify-center">
-                <div class="text-lg">3456</div>
-                <div class="text-sm text-gray-400">Products</div>
+                <div class="text-lg">{{$data['events']->count()}}</div>
+                <div class="text-sm text-gray-400">Events</div>
             </div>
         </div>
     </div>
@@ -124,8 +131,8 @@
                 </svg>
             </div>
             <div class="flex flex-col justify-center">
-                <div class="text-lg">12658</div>
-                <div class="text-sm text-gray-400">Orders</div>
+                <div class="text-lg">{{$data['booking']->count()}}</div>
+                <div class="text-sm text-gray-400">Booking</div>
             </div>
         </div>
     </div>

@@ -36,12 +36,12 @@
                         </form>
                         <button data-modal-target="edit-modal" data-modal-toggle="edit-modal" class="rounded-2xl border bg-gray-600 px-3 text-white py-1 text-xs font-semibold">Edit</button>
                     @else
-                        <form class="flex" action="{{ route('booking', $event->id) }}" enctype="multipart/form-data" method="post">
+                        <form class="flex items-center " action="{{ route('booking', $event->id) }}" enctype="multipart/form-data" method="post">
                             @csrf
                             <!-- <input hidden name="id" type="file" placeholder="resume"> -->
-                            <label class="cursor-pointer" for="resume">Click me to upload resume</label>
+                            <label class="cursor-pointer mx-2 border py-1 px-2 border-red-500" for="resume">RESUME</label>
                             <input class="appearance-none block w-full bg-gray-200 text-gray-700 border border-gray-200 rounded mb-3 leading-tight focus:outline-none focus:bg-white focus:border-gray-500 hidden" id="resume" name="resume" type="file" hidden >
-                            <button class="bg-green-400 text-bold" type="submit">Submit</button>
+                            <button class="bg-green-500 text-bold py-1 px-2 rounded text-white font-bold hover:bg-green-600 duration-500" type="submit">Submit</button>
                         </form>
                     @endif
                 </div>

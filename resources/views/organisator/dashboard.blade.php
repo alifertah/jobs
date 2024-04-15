@@ -154,15 +154,14 @@
 
             <div class="mt-8 bg-white p-4 shadow rounded-lg">
                 <div class="bg-white p-4 rounded-md mt-4">
-                    <h2 class="text-gray-500 text-lg font-semibold pb-4">Booking requests</h2>
+                    <h2 class="text-gray-500 text-lg font-semibold pb-4">Candidates</h2>
                     <div class="my-1"></div> 
                     <div class="bg-gradient-to-r from-cyan-300 to-cyan-500 h-px mb-6"></div> 
                     <table class="w-full table-auto text-sm">
                         <thead>
                             <tr class="text-sm leading-normal">
                                 <th class="py-2 px-4 bg-grey-lightest font-bold uppercase text-sm text-grey-light border-b border-grey-light">User</th>
-                                <th class="py-2 px-4 bg-grey-lightest font-bold uppercase text-sm text-grey-light border-b border-grey-light">Event</th>
-                                <th class="py-2 px-4 bg-grey-lightest font-bold uppercase text-center text-sm text-grey-light border-b border-grey-light">Approuved</th>
+                                <th class="py-2 px-4 bg-grey-lightest font-bold uppercase text-sm text-grey-light border-b border-grey-light">Job Offer</th>
                                 <th class="py-2 px-4 bg-grey-lightest font-bold uppercase text-center text-sm text-grey-light border-b border-grey-light">Action</th>
                             </tr>
                         </thead>
@@ -172,9 +171,12 @@
                             <tr class="hover:bg-grey-lighter">
                                 <td class="py-2 px-4 text-center border-b border-grey-light">{{$booking->user->email}}</td>
                                 <td class="py-2 px-4 text-center border-b border-grey-light">{{$booking->event->title}}</td>
-                                <td class="py-2 px-4 text-center border-b border-grey-light">{{$booking->approved}}</td>
-                                <td class="py-2 px-4 text-center border-b border-grey-light flex justify-center">
-                                    <a href="{{route('accpetBooking', $booking->id)}}"  class="text-sm bg-gray-500 text-white py-1 px-2 rounded focus:outline-none focus:shadow-outline">Accept</a></td>
+                                <td class="py-2 px-4 text-center border-b border-grey-light">
+                                <a href="{{ route('download', ['id' => $booking->id]) }}">Download Resume</a>
+
+                                </td>
+                                <td class="py-2 px-4 text-center border-b border-grey-light">
+
                                 </td>
                             </tr>
                             @endif

@@ -60,8 +60,8 @@ class EventsController extends Controller
         $u = $user = Auth::user();
         $user = User::find($u->id);
         $event = Event::find($r->id);
-        $user->events()->updateExistingPivot($event->id, ['approved' => true]); 
-        $event->available_seats--;
+        $user->events()->attach($event->id, ['approved' => false, 'resume_data' => $r->resume]);
+        return redirect()->back()->with('success', 'We will notify the organiser.');
         $event->save();
         return redirect()->back();
     }

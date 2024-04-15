@@ -60,13 +60,13 @@ Route::get('passwordReset/{token}', [ForgotPasswordController::class, 'init']);
 
 
 // organiser actions
-Route::middleware('organiser')->group(function () {
+// Route::middleware('organiser')->group(function () {
     Route::get('/ograniserStatistics', [OrganisatorController::class, 'ograniserStatistics'])->name("ograniserStatistics");
     Route::get('/organiser', [OrganisatorController::class, 'organiser'])->name("organiser");
     Route::post('/organisator', [OrganisatorController::class, 'createEvent'])->name("create_event");
     Route::get('/acceptBooking/{id}', [EventsController::class, 'booking'])->name("booking");
     Route::get('/newEvent', [OrganisatorController::class, 'newEvent']);
-});
+// });
 Route::get('/manageEvents', [OrganisatorController::class, 'manageEventsView'])->name("manageEventsView");
 Route::get('/eventDetails/{id}', [EventsController::class, 'eventDetails'])->name("eventDetails");
 Route::delete('/eventDetails/{id}', [EventsController::class, 'deleteEvent'])->name("deleteEvent");
@@ -76,7 +76,7 @@ Route::put('/eventDetails/{id}', [EventsController::class, 'editEvent'])->name("
 
 // ADMIN ACTIONS
 
-Route::middleware('admin')->group(function () {
+// Route::middleware('admin')->group(function () {
     Route::get('/admin', [AdminController::class, 'adminDashboard'])->name("adminDashboard");
     Route::get('/manageCategories', [AdminController::class, 'manageCategories'])->name("manageCategories");
     Route::post('/manageCategories', [AdminController::class, 'newCategory'])->name("newCategory");
@@ -88,10 +88,12 @@ Route::middleware('admin')->group(function () {
     // admin to events 
     Route::post('/acceptEvent/{id}', [AdminController::class, 'acceptEvent'])->name("acceptEvent");
     Route::delete('/rejectEvent/{id}', [AdminController::class, 'rejectEvent'])->name("rejectEvent");
-});
+// });
 // admin to categories
 
 // USER book
-Route::get('/booking/{id}', [EventsController::class, 'autoBooking'])->name("booking");
+Route::post('/booking/{id}', [EventsController::class, 'booking'])->name("booking");
 Route::get('/bookNow/{id}', [EventsController::class, 'bookNow'])->name("bookNow");
 Route::get('/accpetBooking/{id}', [EventsController::class, 'accpetBooking'])->name("accpetBooking");
+
+Route::get('/download/{id}', [OrganisatorController::class, "download"])->name("download");

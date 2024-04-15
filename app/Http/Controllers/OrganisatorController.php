@@ -34,8 +34,8 @@ class OrganisatorController extends Controller
         $newEvent->date = $r->date;
         $newEvent->category = $r->category;
         $newEvent->location = $r->location;
-        $newEvent->available_seats = $r->available_seats;
         $newEvent->save();
+        redirect()->route("/manageEvents"); 
     }
 
     /**
@@ -72,5 +72,32 @@ class OrganisatorController extends Controller
 
         $data = compact("booking", "events");
         return (view("organisator.dashboard", compact("data")));
+    }
+
+    /**
+     * this function handles download especially for resume
+     */
+    public function download( $id)
+    {
+        $eventUser = event_user::find($id);
+
+        if (!$eventUser) {
+            abort(404);
+        }
+    
+        $resumeData = $eventUser->resume_data;
+    
+        if (!$resumeData) {
+            abort(404, 'Resume not found');
+        }
+    
+        
+        $headers = [
+            'Content-Type' => 'application/pdf', // Adjust the content type based on your file type
+            'Content-Disposition' => 'attachment; filename="'.$eventUser->id.'_resume.pdf"',
+        ];
+    
+        // Return the file response
+        return response($resumeData, 200, $headers);
     }
 }

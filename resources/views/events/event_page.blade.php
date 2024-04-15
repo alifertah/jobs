@@ -9,6 +9,22 @@
     <script src="https://cdn.tailwindcss.com"></script>
 </head>
 <body class="bg-gray-100 dark:bg-gray-800">
+<nav class="flex justify-between items-center bg-gray-800 shadow-lg px-8 py-4">
+        <div id="navbar-default">
+            <ul class="flex">
+                <li>
+                    <a href="/manageEvents" class="block py-2 px-3 text-white hover:text-blue-500 duration-500" aria-current="page">Events</a>
+                </li>
+                <li>
+                    <a href="/newEvent" class="block py-2 px-3 text-white hover:text-blue-500 duration-500" aria-current="page">New event</a>
+                </li>
+                <li>
+                    <a href="/organiser" class="block py-2 px-3 text-white hover:text-blue-500 duration-500" aria-current="page">Dashboard</a>
+                </li>
+            </ul>
+        </div>
+        <a href="/logout" class=" text-white block py-2 px-3 hover:text-blue-500 duration-500">Logout</a>
+    </nav>
     <!-- This is an example component -->
     <div class='flex items-center justify-center min-h-screen'>
         <div class="rounded-xl border p-5 shadow-md w-9/12 bg-white">
@@ -39,7 +55,7 @@
                         <form class="flex items-center " action="{{ route('booking', $event->id) }}" enctype="multipart/form-data" method="post">
                             @csrf
                             <!-- <input hidden name="id" type="file" placeholder="resume"> -->
-                            <label class="cursor-pointer mx-2 border py-1 px-2 border-red-500" for="resume">RESUME</label>
+                            <label class="cursor-pointer mx-2 border py-1 px-2 border-green-500" for="resume">RESUME</label>
                             <input class="appearance-none block w-full bg-gray-200 text-gray-700 border border-gray-200 rounded mb-3 leading-tight focus:outline-none focus:bg-white focus:border-gray-500 hidden" id="resume" name="resume" type="file" hidden >
                             <button class="bg-green-500 text-bold py-1 px-2 rounded text-white font-bold hover:bg-green-600 duration-500" type="submit">Submit</button>
                         </form>
